@@ -51,8 +51,8 @@ def scrap_cat(cat_id):
     return ret
 
 def main():
-    with open('prices.csv', 'w', LINE_BUFFERED) as csf_vile:
-        csv_writer = csv.writer(csf_vile)
+    with open('prices.csv', 'w', LINE_BUFFERED) as csv_file:
+        csv_writer = csv.writer(csv_file)
         main_cats = get_main_cats()
         for cat_id in main_cats:
             titles = scrap_cat(cat_id)
