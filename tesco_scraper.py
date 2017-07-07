@@ -1,9 +1,8 @@
-#!/usr/bin/env python3.4
+#!/usr/bin/env python3
 import urllib.request
 import sys
 import re
 from pyquery import PyQuery
-from lxml import etree
 import urllib
 import csv
 
@@ -28,6 +27,7 @@ def read_url(url):
 def get_main_cats():
     return re.findall(RE_CAT_IDS, read_url(MAIN_URL))
 
+
 def scrap_cat(cat_id):
     ret = []
     index = 1
@@ -36,7 +36,7 @@ def scrap_cat(cat_id):
             cat_url=CAT_URL, cat_id=cat_id, index=index)
         dd = PyQuery(cat_url, opener=read_url)
         print(cat_url, cat_id)
-        print
+        print()
         titles = dd('.cf.content').find('h2 a')
         prices = dd('.cf.content').find('.linePrice')
         assert len(titles) == len(prices)
@@ -46,18 +46,21 @@ def scrap_cat(cat_id):
             title = title.get('title') or title.text_content() or ''
             print(title.strip(), price.text.strip())
             ret.append((title.strip(), price.text.strip()))
-            print
+            print()
         index += 1
     return ret
+
 
 def main():
     with open('prices.csv', 'w', LINE_BUFFERED) as csf_vile:
         csv_writer = csv.writer(csf_vile)
         main_cats = get_main_cats()
+        assert len(main_cats) > 0, '[ERR ] No categories found'
         for cat_id in main_cats:
             titles = scrap_cat(cat_id)
             csv_writer.writerows(titles)
 
 
 if __name__ == '__main__':
+    print("This scraper is deprecated, the TESCO website changed but scraper didn't catch up.")
     sys.exit(main())

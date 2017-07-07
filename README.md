@@ -5,6 +5,10 @@ A very unsophisticated price scraper for http://ezakupy.tesco.pl/.
 
 Changelog:
 
-0.1 (2014-11-19)
+(2017-07-07)
+------------
+* deprecate old scraper, plan for new one
+
+(2014-11-19)
 ----------------
 * works, not fast, not clever, but didn't break during whole run
