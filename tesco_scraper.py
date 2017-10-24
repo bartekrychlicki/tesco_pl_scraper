@@ -52,8 +52,8 @@ def scrap_cat(cat_id):
 
 
 def main():
-    with open('prices.csv', 'w', LINE_BUFFERED) as csf_vile:
-        csv_writer = csv.writer(csf_vile)
+    with open('prices.csv', 'w', LINE_BUFFERED) as csv_file:
+        csv_writer = csv.writer(csv_file)
         main_cats = get_main_cats()
         assert len(main_cats) > 0, '[ERR ] No categories found'
         for cat_id in main_cats:
